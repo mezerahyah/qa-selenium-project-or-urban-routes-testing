@@ -2,11 +2,21 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
-
 import data
+import helpers
 
+@classmethod
+def setup_class(cls):
+    from selenium.webdriver import DesiredCapabilities
+    capabilities = DesiredCapabilities.CHROME
+    capabilities["goog:loggingPrefs"] = {'performance': 'ALL'}
+    cls.driver = webdriver.Chrome()
+    if helpers.is_url_reachable():
+        data.URBAN_ROUTES_URL
+        print("Connected to the Urban Routes server")
+    else:
+        print("Cannot connect to Urban Routes. Check the server is on and still running")
 
-class TestUrbanRoutes:
     def test_set_route():
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.navigate_to_urban_routes()
@@ -24,7 +34,8 @@ class TestUrbanRoutes:
         routes_page.click_call_taxi_button()
         routes_page.select_supportive_plan()
         active_plan_text = routes_page.get_active_plan_text()
-    assert "Supportive" in active_plan_text  # Or check for specific text
+    assert "Supportive" in active_plan_text
+
     def test_fill_phone_number(self):
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.set_address_from()
@@ -37,6 +48,7 @@ class TestUrbanRoutes:
         routes_page.set_phone_number(phone_number)
     displayed_phone = routes_page.get_phone_number_value()
     assert data.phone_number in displayed_phone
+
     def test_fill_card(self):
         routes_page.payment_method_card()
     def test_comment_for_driver(self):
@@ -52,26 +64,14 @@ class TestUrbanRoutes:
                 routes_page = UrbanRoutesPage(self.driver)
                 routes_page.order_ice_creams(2)
                 assert routes_page.get_ice_cream_count() == 2
+
     def test_car_search_model_appears(self):
         actual_from = routes_page.get_car_search_modal_text()
         assert actual_from == data.car_search_modal_text
 
-    def setup_class(cls):
-        if helpers.is_url_reachable(data.URBAN_ROUTES_URL):
-            print("Connected to the Urban Routes Server")
-        else:
-            print("Cannot connect to the Urban Routes Server")
-
-import helpers
-
-def setup_class(cls):
-    from selenium.webdriver import DesiredCapabilities
-    capabilities = DesiredCapabilities.CHROME
-    capabilities["goog:loggingPrefs"] = {'performance': 'ALL'}
-    cls.driver = webdriver.Chrome()
-
-    if not helpers.py.is_url_reachable(): return
-
+@classmethod
+def teardown_class(cls):
+    cls.driver.quit()
 @classmethod
 def teardown_class(cls):
     cls.driver.quit()
