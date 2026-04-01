@@ -37,7 +37,6 @@ def setup_class(cls):
     assert "Supportive" in active_plan_text
 
     def test_fill_phone_number(self):
-        
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.set_address_from()
         routes_page.set_address_to()
@@ -50,13 +49,19 @@ def setup_class(cls):
     assert data.phone_number in displayed_phone
 
     def test_fill_card(self):
+        routes_page = UrbanRoutesPage(self.driver)
         routes_page.set_address_from()
         routes_page.set_address_to()
         routes_page.click_call_taxi_button()
         routes_page.select_supportive_plan
         routes_page.click_payment_method_field()
-        routes_page.payment_method_card()
+        routes_page.set_payment_method_card()
+        routes.page = retrieve_card_bumber(self.driver)
+        displayed_phone = routes.page.get_card_number_value()
+        assert data.card_number 
+        
     def test_comment_for_driver(self):
+        routes_page = UrbanRoutesPage(self.driver)
         routes_page.set_message_for_driver()
     def test_order_blanket_and_handkerchiefs(self):
         routes_page = UrbanRoutesPage(self.driver)
