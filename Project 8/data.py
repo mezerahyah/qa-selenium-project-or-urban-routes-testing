@@ -1,0 +1,14 @@
+URBAN_ROUTES_URL = """"https://cnt-94d296e3-376c-4ce1-98d8-62a2dedad497.containerhub.tripleten-services.com/"""
+phone_number = "+1 123 123 12 34"
+card_number = "1234 5678 9100 0000"
+card_code = "111"
+message_for_driver = "Two ice creams ordered"
+ADDRESS_FROM = "East 2nd Street, 601"
+ADDRESS_TO = "1300 1st St"
+supportive_plan_text = "Supportive"
+payment_method_card = "Card"
+ice_cream_quantity = 2
+car_search_modal_text = "Car search"
+blanket_handkerchiefs = True
+default_wait_time = 3
+phone_code_wait_time = 10
