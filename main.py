@@ -55,14 +55,18 @@ def setup_class(cls):
         routes_page.click_call_taxi_button()
         routes_page.select_supportive_plan
         routes_page.click_payment_method_field()
-        routes_page.set_payment_method_card()
-        routes.page = retrieve_card_bumber(self.driver)
-        displayed_phone = routes.page.get_card_number_value()
-        assert data.card_number 
+        routes_page.set_card_number()
+        card_number = retrieve_card_bumber(self.driver)
+    displayed_phone = routes.page.get_card_number_value()
+    assert data.card_number in displayed_phone 
         
     def test_comment_for_driver(self):
         routes_page = UrbanRoutesPage(self.driver)
+        routes_page.set_address_from()
+        routes_page.set_address_to()
+        routes_page.click_call_taxi_button()
         routes_page.set_message_for_driver()
+        
     def test_order_blanket_and_handkerchiefs(self):
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.click_blanket_handkerchiefs()
