@@ -37,19 +37,24 @@ def setup_class(cls):
     assert "Supportive" in active_plan_text
 
     def test_fill_phone_number(self):
+        
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.set_address_from()
         routes_page.set_address_to()
         routes_page.click_call_taxi_button()
         routes_page.select_supportive_plan()
         routes_page.click_phone_number_field()
-        routes_page.set_address_to()
         phone_number = retrieve_phone_number(self.driver)
         routes_page.set_phone_number(phone_number)
     displayed_phone = routes_page.get_phone_number_value()
     assert data.phone_number in displayed_phone
 
     def test_fill_card(self):
+        routes_page.set_address_from()
+        routes_page.set_address_to()
+        routes_page.click_call_taxi_button()
+        routes_page.select_supportive_plan
+        routes_page.click_payment_method_field()
         routes_page.payment_method_card()
     def test_comment_for_driver(self):
         routes_page.set_message_for_driver()
@@ -69,9 +74,6 @@ def setup_class(cls):
         actual_from = routes_page.get_car_search_modal_text()
         assert actual_from == data.car_search_modal_text
 
-@classmethod
-def teardown_class(cls):
-    cls.driver.quit()
 @classmethod
 def teardown_class(cls):
     cls.driver.quit()
