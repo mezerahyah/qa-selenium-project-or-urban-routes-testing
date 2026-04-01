@@ -75,15 +75,18 @@ def setup_class(cls):
         routes_page.set_address_to()
         routes_page.click_call_taxi_button()
         routes_page.click_blanket_handkerchiefs()    
-        assert routes_page.is_blanket_handkerchiefs_selected()
+    assert routes_page.is_blanket_handkerchiefs_selected()
         
     def test_order_2_ice_creams(self):
         number_of_ice_creams = 2
         for count in range(number_of_ice_creams):
-            def test_order_ice_creams(self):
-                routes_page = UrbanRoutesPage(self.driver)
-                routes_page.order_ice_creams(2)
-                assert routes_page.get_ice_cream_count() == 2
+    def test_order_ice_creams(self):
+        routes_page = UrbanRoutesPage(self.driver)
+        routes_page.set_address_from()
+        routes_page.set_address_to()
+        routes_page.click_call_taxi_button(
+        routes_page.order_ice_creams(2)
+    assert routes_page.get_ice_cream_count() == 2
 
     def test_car_search_model_appears(self):
         actual_from = routes_page.get_car_search_modal_text()
