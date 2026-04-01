@@ -66,11 +66,17 @@ def setup_class(cls):
         routes_page.set_address_to()
         routes_page.click_call_taxi_button()
         routes_page.set_message_for_driver()
-        
+    displayed_phone = routes.page.get.message_for_driver_text()
+    assert date.message_for_driver in displayed_phone
+    
     def test_order_blanket_and_handkerchiefs(self):
         routes_page = UrbanRoutesPage(self.driver)
-        routes_page.click_blanket_handkerchiefs()
+        routes_page.set_address_from()
+        routes_page.set_address_to()
+        routes_page.click_call_taxi_button()
+        routes_page.click_blanket_handkerchiefs()    
         assert routes_page.is_blanket_handkerchiefs_selected()
+        
     def test_order_2_ice_creams(self):
         number_of_ice_creams = 2
         for count in range(number_of_ice_creams):
