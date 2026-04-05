@@ -1,5 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+import data
+import helpers
 
 
 
@@ -36,7 +37,6 @@ class UrbanRoutesPage:
     def get_active_plan_text(self):
         return self.driver.find_element(*self.active_plan).text
 
-
     def click_phone_number_field(self):
         self.driver.find_element(*self.phone_number_field).click()
 
@@ -72,11 +72,10 @@ class UrbanRoutesPage:
     def is_blanket_handkerchiefs_selected(self):
         return self.driver.find_element(*self.blanket_handkerchiefs_checkbox).get_property('checked')
 
-
-    def order_ice_creams(self, quantity=2):
-        for i in range(quantity):
-            self.driver.find_element(*self.ice_cream_plus_button).click()
-
+    def order_ice_creams(self):
+        self.driver.find_element(*self.ice_cream_plus_button).click()
+        self.driver.find_element(*self.ice_cream_plus_button).click()
+            
     def get_ice_cream_count(self):
         return int(self.driver.find_element(*self.ice_cream_counter).text)
 
