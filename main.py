@@ -95,7 +95,6 @@ def test_car_search_model_appears(self):
     routes_page.click_call_taxi_button()
     routes_page.select_supportive_plan
     routes_page.set_message_for_driver
-    displayed_phone = routes_page.get_car_search_modal_screen
     actual_car_modal_search = routes_page.get_car_search_modal_text()
 assert actual_car_modal_search == data.car_search_modal_text
 
