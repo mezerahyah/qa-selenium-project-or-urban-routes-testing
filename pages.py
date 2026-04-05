@@ -49,7 +49,6 @@ class UrbanRoutesPage:
     def get_phone_number_value(self):
         return self.driver.find_element(*self.phone_number_field).get_property("value")
 
-
     def add_payment_method(self):
         self.driver.find_element(*self.payment_method_button).click()
         self.driver.find_element(*self.add_card_button).click()
