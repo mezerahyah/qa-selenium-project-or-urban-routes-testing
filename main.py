@@ -57,7 +57,7 @@ def test_fill_card(self):
     routes_page.click_payment_method_field()
     routes_page.set_card_number()
     card_number = retrieve_card_bumber(self.driver)
-    displayed_phone = routes.page.get_card_number_value()
+    displayed_phone = routes_page.get_card_number_value()
     assert data.card_number in displayed_phone 
         
 def test_comment_for_driver(self):
@@ -66,7 +66,7 @@ def test_comment_for_driver(self):
     routes_page.set_address_to()
     routes_page.click_call_taxi_button()
     routes_page.set_message_for_driver()
-    displayed_phone = routes.page.get.message_for_driver_text()
+    displayed_phone = routes_page.get_message_for_driver_text()
 assert date.message_for_driver in displayed_phone
     
 def test_order_blanket_and_handkerchiefs(self):
@@ -85,13 +85,19 @@ def test_order_2_ice_creams(self):
     routes_page.click_call_taxi_button()
     routes_page.order_ice_creams(2)
     for count in range(number_of_ice_creams):
-           routes_page.click_ice_cream_button()     
+        routes_page.click_ice_cream_button()     
 assert routes_page.get_ice_cream_count() == 2
 
 def test_car_search_model_appears(self):
-        
-    actual_from = routes_page.get_car_search_modal_text()
-assert actual_from == data.car_search_modal_text
+    routes_page = UrbanRoutesPage(self.driver)
+    routes_page.set_address_from()
+    routes_page.set_address_to()
+    routes_page.click_call_taxi_button()
+    routes_page.select_supportive_plan
+    routes_page.set_message_for_driver
+    displayed_phone = routes_page.get_car_search_modal_screen
+    actual_car_modal_search = routes_page.get_car_search_modal_text()
+assert actual_car_modal_search == data.car_search_modal_text
 
 @classmethod
 def teardown_class(cls):
