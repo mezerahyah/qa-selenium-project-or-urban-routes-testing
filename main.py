@@ -1,10 +1,8 @@
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
+from selenium import webdriver
 import data
 import helpers
 
+def TestUrbanRoutes
 @classmethod
 def setup_class(cls):
     from selenium.webdriver import DesiredCapabilities
